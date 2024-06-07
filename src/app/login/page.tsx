@@ -20,6 +20,7 @@ const LoginPage = () => {
       router.push('/dashboard'); // Redirect to dashboard upon successful login
     } catch (error) {
       console.error('Login failed:', error);
+      alert('Login failed. Please check your email and password and try again.');
     }
   };
 
