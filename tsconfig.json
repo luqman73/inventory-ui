@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/hooks/*": ["src/hooks/*"]
+    },
     "lib": [
       "dom",
       "dom.iterable",
