@@ -29,8 +29,8 @@ const LoginPage = () => {
        <h1>Login</h1>
       <div className='flex justify-center items-center'>
         <form onSubmit={handleLogin}>
-          <input className="border rounded-md border-green-500" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <input className="border rounded-md border-green-500" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input className="border rounded-md border-gray-500" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <input className="border rounded-md border-gray-500" type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" type="submit">Login</button>
         </form>
       </div>
