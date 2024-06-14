@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import useAuth from '@/hooks/useAuth';
-import Header from 'src/components/Header';
+import Navbar from 'src/components/NavBar';
 
 const DashboardPage = () => {
   const isAuthenticated = useAuth();
@@ -13,7 +13,7 @@ const DashboardPage = () => {
 
   return (
     <div>
-      <Header/>
+      <Navbar/>
       <h1>Dashboard</h1>
       {/* Your dashboard content here */}
       <p>you are authorized user!</p>
