@@ -3,7 +3,7 @@
 import useAuth from '@/hooks/useAuth';
 import { useState } from 'react';
 import axios from 'axios';
-import Header from 'src/components/Header';
+import Navbar from 'src/components/NavBar';
 
 const RegisterStaff = () => {
     const isAuthenticated = useAuth();
@@ -34,7 +34,7 @@ const RegisterStaff = () => {
 
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <div className='flex justify-center bg-orange-100'>
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} className='border rounded-md border-gray-500' required />
