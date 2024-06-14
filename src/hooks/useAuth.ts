@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
-const useAuth = () => {
+const useAuth = (requiredRole) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [hasRequiredRole, setHasRequiredRole] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,8 +21,16 @@ const useAuth = () => {
             Authorization: `Bearer ${token}`
           }
         });
-        if (response.data) {
+
+        const user = response.data;
+
+        if (user) {
           setIsAuthenticated(true);
+          if(user.role && user.role.includes(requiredRole)) {
+            setHasRequiredRole(true);
+          } else {
+            router.push('/dashboard');
+          }
         }
       } catch (error) {
         console.error('Authentication check failed:', error);
@@ -31,9 +40,9 @@ const useAuth = () => {
     };
 
     checkAuth();
-  }, [router]);
+  }, [router, requiredRole]);
 
-  return isAuthenticated;
+  return {isAuthenticated, hasRequiredRole};
 };
 
 export default useAuth;

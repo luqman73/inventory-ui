@@ -6,13 +6,14 @@ import axios from 'axios';
 import Navbar from 'src/components/NavBar';
 
 const RegisterStaff = () => {
-    const isAuthenticated = useAuth();
+    const { isAuthenticated, hasRequiredRole } = useAuth('admin');
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !hasRequiredRole) {
         return <p>Loading...</p>;
     }
     
