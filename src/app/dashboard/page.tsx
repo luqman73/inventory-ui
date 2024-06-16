@@ -4,7 +4,7 @@ import useAuth from '@/hooks/useAuth';
 import Navbar from 'src/components/NavBar';
 
 const DashboardPage = () => {
-  const isAuthenticated = useAuth();
+  const isAuthenticated = useAuth(['admin', 'staff']);
 
   if (!isAuthenticated) {
     return <p>Loading...</p>;
