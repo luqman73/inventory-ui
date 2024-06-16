@@ -26,7 +26,7 @@ const useAuth = (requiredRole) => {
 
         if (user) {
           setIsAuthenticated(true);
-          if(user.role && user.role.includes(requiredRole)) {
+          if(requiredRole.includes(user.role)) {
             setHasRequiredRole(true);
           } else {
             router.push('/dashboard');
