@@ -4,6 +4,7 @@ import useAuth from '@/hooks/useAuth';
 import { useState } from 'react';
 import axios from 'axios';
 import Navbar from 'src/components/NavBar';
+import StaffList from 'src/components/contents/StaffList';
 
 const RegisterStaff = () => {
     const { isAuthenticated, hasRequiredRole } = useAuth('admin');
@@ -36,7 +37,7 @@ const RegisterStaff = () => {
     return (
         <div>
             <Navbar/>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className='bg-purple-300'>
                 <div className='flex flex-col max-w-xl m-8 p-8 rounded-xl bg-teal-100'>
                     <div className='mb-4'>
                         <label htmlFor="name" className='block text-sm font-medium leading-6 text-gray-900'>Name</label>
@@ -67,6 +68,9 @@ const RegisterStaff = () => {
                     </div>
                 </div>
             </form>
+            <div className='bg-orange-50'>
+                <StaffList />
+            </div>
         </div>
     );
 };
