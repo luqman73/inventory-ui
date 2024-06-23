@@ -1,7 +1,8 @@
 "use client"
 
 import useAuth from '@/hooks/useAuth';
-import Navbar from 'src/components/NavBar';
+import Sidebar from 'src/components/layouts/Sidebar';
+import Navbar from 'src/components/layouts/NavBar';
 
 const DashboardPage = () => {
   const isAuthenticated = useAuth(['admin', 'staff']);
@@ -12,7 +13,6 @@ const DashboardPage = () => {
 
   return (
     <div>
-      <Navbar/>
       <h1>Dashboard</h1>
       {/* Your dashboard content here */}
       <p>you are authorized user!</p>
