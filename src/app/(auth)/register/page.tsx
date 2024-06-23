@@ -3,8 +3,9 @@
 import useAuth from '@/hooks/useAuth';
 import { useState } from 'react';
 import axios from 'axios';
-import Navbar from 'src/components/NavBar';
+import Navbar from 'src/components/layouts/NavBar';
 import StaffList from 'src/components/contents/StaffList';
+import Sidebar from 'src/components/layouts/Sidebar';
 
 const RegisterStaff = () => {
     const { isAuthenticated, hasRequiredRole } = useAuth('admin');
@@ -36,7 +37,6 @@ const RegisterStaff = () => {
 
     return (
         <div>
-            <Navbar/>
             <form onSubmit={handleSubmit} className='bg-purple-300'>
                 <div className='flex flex-col max-w-xl m-8 p-8 rounded-xl bg-teal-100'>
                     <div className='mb-4'>
