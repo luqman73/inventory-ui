@@ -16,7 +16,9 @@ export default function registerLayout({
                     <Sidebar/>
                 </div>
                 <div className="flex-1 p-6 overflow-auto">
-                    {children}
+                    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-300">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
