@@ -13,9 +13,6 @@ const Sidebar = () => {
                         <Link href="/dashboard" className="text-xl">Dashboard</Link>
                     </li>
                     <li className="hover:bg-blue-300 block p-3 rounded">
-                        <Link href="/inventory" className="text-xl">Inventory</Link>
-                    </li>
-                    <li className="hover:bg-blue-300 block p-3 rounded">
                         <Link href="/register" className="text-xl">Register</Link>
                     </li>
                 </ul>

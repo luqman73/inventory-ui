@@ -9,14 +9,16 @@ export default function registerLayout({
     children: React.ReactNode;
 }) {
     return (
-        <div>
+        <div className="h-screen flex flex-col">
             <Navbar/>
-            <div className="flex min-h-screen">
+            <div className="flex flex-1 overflow-hidden">
                 <div className="w-64">
                     <Sidebar/>
                 </div>
-                <div className="flex-1 p-6">
-                    {children}
+                <div className="flex-1 p-6 overflow-auto">
+                    <div className="bg-white p-6 rounded-lg shadow-md border border-gray-300">
+                        {children}
+                    </div>
                 </div>
             </div>
         </div>
