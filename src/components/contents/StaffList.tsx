@@ -1,13 +1,14 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
-import useAuth from "@/hooks/useAuth";
+
 
 const StaffList = () => {
-    const { isAuthenticated, hasRequiredRole } = useAuth('admin');
 
     const [staffList, setStaffList] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    
 
     useEffect(() => {
         const fetchStaff = async () => {
@@ -27,10 +28,10 @@ const StaffList = () => {
 
     const handleDeactivate = async (userId) => {
         try {
-            await axios.put('http://inventory-be.test/api/staff/${userId}/deactivate');
+            await axios.put(`http://inventory-be.test/api/staff/${userId}/deactivate`);
             alert('User deactivate successfully');
             // Refetch the staff list or update the state to reflect the changes
-            setStaffList(prevList => prevList.map(user => user.id === userId ? { ...user, status: 'inactive' } : user)); 
+            // setStaffList(prevList => prevList.map(user => user.id === userId ? { ...user, status: 'inactive' } : user)); 
         } catch (error) {
             console.error('Error deactivating user:', error);
             alert('Failed to deactivate user');
@@ -53,10 +54,10 @@ const StaffList = () => {
                     <li key={staff.id} className="flex  items-center">
                         <div className="flex-grow">
                             <div className="flex flex-row space-x-4">
+                                <div>{staff.id}</div>
                                 <div>{staff.name}</div>
                                 <div>{staff.email}</div>
                             </div>
-                           
                         </div>
                         <button className="bg-red-500 hover:bg-red-400 text-white text-sm font-semibold py-2 px-3 rounded shadow-sm" onClick={() => handleDeactivate(staff.id)}>Deactivate</button>
                     </li>
