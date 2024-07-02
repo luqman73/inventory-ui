@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
+import Link from "next/link";
 
 
 const StaffList = () => {
@@ -30,8 +31,6 @@ const StaffList = () => {
         try {
             await axios.put(`http://inventory-be.test/api/staff/${userId}/deactivate`);
             alert('User deactivate successfully');
-            // Refetch the staff list or update the state to reflect the changes
-            // setStaffList(prevList => prevList.map(user => user.id === userId ? { ...user, status: 'inactive' } : user)); 
         } catch (error) {
             console.error('Error deactivating user:', error);
             alert('Failed to deactivate user');
@@ -51,7 +50,7 @@ const StaffList = () => {
             <h1>Staff List</h1>
             <ul>
                 {staffList.map((staff) => (
-                    <li key={staff.id} className="flex  items-center">
+                    <li key={staff.id} className="flex">
                         <div className="flex-grow">
                             <div className="flex flex-row space-x-4">
                                 <div>{staff.id}</div>
@@ -59,7 +58,8 @@ const StaffList = () => {
                                 <div>{staff.email}</div>
                             </div>
                         </div>
-                        <button className="bg-red-500 hover:bg-red-400 text-white text-sm font-semibold py-2 px-3 rounded shadow-sm" onClick={() => handleDeactivate(staff.id)}>Deactivate</button>
+                        <Link href={`/editStaff/${staff.id}`} className="bg-green-500 hover:bg-green-400 text-white text-sm font-semibold py-2 px-3 rounded shadow-sm mr-2">Edit</Link>
+                        <button className="bg-red-500 hover:bg-red-400 text-white text-sm font-semibold py-2 px-3 rounded shadow-sm mr" onClick={() => handleDeactivate(staff.id)}>Deactivate</button>
                     </li>
                 ))}
             </ul>
