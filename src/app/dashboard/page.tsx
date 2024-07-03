@@ -7,6 +7,7 @@ import Navbar from 'src/components/layouts/NavBar';
 const DashboardPage = () => {
   const isAuthenticated = useAuth(['admin', 'staff']);
 
+  console.log("from dashboard");
   if (!isAuthenticated) {
     return <p>Loading...</p>;
   }

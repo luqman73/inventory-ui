@@ -3,9 +3,7 @@
 import useAuth from '@/hooks/useAuth';
 import { useState } from 'react';
 import axios from 'axios';
-import Navbar from 'src/components/layouts/NavBar';
 import StaffList from 'src/components/contents/StaffList';
-import Sidebar from 'src/components/layouts/Sidebar';
 
 const RegisterStaff = () => {
     const { isAuthenticated, hasRequiredRole } = useAuth('admin');
