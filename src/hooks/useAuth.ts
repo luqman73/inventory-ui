@@ -25,11 +25,21 @@ const useAuth = (requiredRole) => {
         const user = response.data;
 
         if (user) {
+          const isActiveUser = user.status === 'active';
           setIsAuthenticated(true);
-          if(requiredRole.includes(user.role)) {
+
+          if (requiredRole.includes(user.role)) {
             setHasRequiredRole(true);
           } else {
             router.push('/dashboard');
+          }
+
+          if (!isActiveUser) {
+            localStorage.removeItem('token');
+            router.push('/login');
+            alert('User no longer active');
+
+            return;
           }
         }
       } catch (error) {
@@ -42,7 +52,7 @@ const useAuth = (requiredRole) => {
     checkAuth();
   }, [router, requiredRole]);
 
-  return {isAuthenticated, hasRequiredRole};
+  return { isAuthenticated, hasRequiredRole };
 };
 
 export default useAuth;
