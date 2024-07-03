@@ -14,13 +14,10 @@ const EditStaff = () => {
         email: "",
     });
     
-    console.log(userId, "test to check");
-
     useEffect(() => {
         // Fetch user data based on userId when component mounts
         const fetchUser = async () => {
             try {
-                console.log('from useEffect')
                 const response = await axios.get(`http://inventory-be.test/api/staff/${userId}`);
                 setUser(response.data);
             } catch (error) {
