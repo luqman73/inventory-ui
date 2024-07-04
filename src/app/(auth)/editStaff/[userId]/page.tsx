@@ -1,19 +1,19 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import { useParams  } from "next/navigation";
+import { useParams } from "next/navigation";
 import axios from "axios";
 
 const EditStaff = () => {
     const { userId } = useParams();
 
-    
+
     const [user, setUser] = useState({
         id: "",
         name: "",
         email: "",
     });
-    
+
     useEffect(() => {
         // Fetch user data based on userId when component mounts
         const fetchUser = async () => {
@@ -25,7 +25,6 @@ const EditStaff = () => {
             }
         };
 
-        
         if (userId) {
             fetchUser();
         }
@@ -52,7 +51,7 @@ const EditStaff = () => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <div className= "mb-4">
+                <div className="mb-4">
                     <label htmlFor="name" className='block text-sm font-medium leading-6 text-gray-900'>Name</label>
                     <input
                         type="text"
@@ -63,7 +62,7 @@ const EditStaff = () => {
                         required
                     />
                 </div>
-                <div className= "mb-4">
+                <div className="mb-4">
                     <label htmlFor="email" className='block text-sm font-medium leading-6 text-gray-900'>Email</label>
                     <input
                         type="text"
