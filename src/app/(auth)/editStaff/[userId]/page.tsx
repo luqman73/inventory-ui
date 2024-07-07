@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams } from "next/navigation";
-import axios from "axios";
+import api from 'src/api/api';
 
 const EditStaff = () => {
     const { userId } = useParams();
@@ -18,7 +18,7 @@ const EditStaff = () => {
         // Fetch user data based on userId when component mounts
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://inventory-be.test/api/staff/${userId}`);
+                const response = await api.get(`/staff/${userId}`);
                 setUser(response.data);
             } catch (error) {
                 console.error("Error fetching user data:", error);
@@ -41,7 +41,7 @@ const EditStaff = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://inventory-be.test/api/staff/${userId}/update`, user);
+            const response = await api.put(`/staff/${userId}/update`, user);
             console.log("User updated successfully:", response.data)
         } catch (error) {
             console.error("Error updating user:", error);

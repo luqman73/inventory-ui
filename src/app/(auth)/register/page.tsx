@@ -2,7 +2,7 @@
 
 import useAuth from '@/hooks/useAuth';
 import { useState } from 'react';
-import axios from 'axios';
+import api from 'src/api/api';
 import StaffList from 'src/components/contents/StaffList';
 
 const RegisterStaff = () => {
@@ -20,7 +20,7 @@ const RegisterStaff = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://inventory-be.test/api/register', {
+            await api.post('/register', {
                 name,
                 email,
                 password,

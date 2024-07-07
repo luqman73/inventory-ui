@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
+import api from 'src/api/api';
 
 const useAuth = (requiredRole) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -16,7 +16,7 @@ const useAuth = (requiredRole) => {
       }
 
       try {
-        const response = await axios.get('http://inventory-be.test/api/user', {
+        const response = await api.get('/user', {
           headers: {
             Authorization: `Bearer ${token}`
           }

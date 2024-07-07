@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import axios from "axios";
 import Link from "next/link";
-
+import api from "../../api/api";
 
 const StaffList = () => {
 
@@ -14,7 +14,7 @@ const StaffList = () => {
     useEffect(() => {
         const fetchStaff = async () => {
             try {
-                const response = await axios.get('http://inventory-be.test/api/staff');
+                const response = await api.get('/staff');
                 setStaffList(response.data);
                 setLoading(false);
             } catch (error) {
@@ -29,7 +29,7 @@ const StaffList = () => {
 
     const handleDeactivate = async (userId) => {
         try {
-            await axios.put(`http://inventory-be.test/api/staff/${userId}/deactivate`);
+            await api.put(`/staff/${userId}/deactivate`);
             alert('User deactivate successfully');
         } catch (error) {
             console.error('Error deactivating user:', error);
