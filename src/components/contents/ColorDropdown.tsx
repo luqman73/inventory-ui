@@ -1,22 +1,82 @@
+"use client"
+    ;
+import { useState, useEffect } from "react";
+import api from "src/api/api";
+import Modal from "./Modal";
+
 const ColorDropdown = () => {
+    const [colors, setColors] = useState([]);
+    const [newColor, setNewColor] = useState('');
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    useEffect(() => {
+        //Fetch colors from the API
+        const fetchColors = async () => {
+            try {
+                const response = await api.get('/colors');
+                setColors(response.data);
+            } catch (error) {
+                console.error('Failed to fetch colors', error);
+            }
+        };
+
+        fetchColors();
+    }, []);
+
+    const handleNewColorSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await api.post('/colors', { color: newColor });
+            setColors([...colors, response.data.color]);
+            setNewColor('');
+            setIsModalVisible(false);
+            alert('color added successfully!');
+
+        } catch (error) {
+            console.error('Error adding color:', error);
+            alert('Error adding color.');
+        }
+    };
+
 
     return (
-        <div>
-            <div className="relative inline-block text-left">
-                <button className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none">
-                    Color
-                    <svg className="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.684l3.71-3.498a.75.75 0 011.08 1.04l-4 3.75a.75.75 0 01-1.08 0l-4-3.75a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
-                    </svg>
+        <div className="inline-block text-left">
+            <div className="flex items-center">
+            <div className="mt-2 bg-white border rounded-md shadow-md">
+                <select name="color" id="color" className="form-select">
+                    {colors.map((color, index) => (
+                        <option key={index} value={color.name}>{color.name}</option>
+                    ))}
+                </select>
+            </div>
+                <button
+                    className="w-64 border rounded-md px-4 py-1 shadow-md hover:bg-gray-50 focus:outline-none flex items-center text-sm font-medium text-gray-700"
+                    type="button" onClick={() => setIsModalVisible(true)}
+                >
+                    Add new color
                 </button>
             </div>
-            <div className="w-48 bg-white border rounded-md shadow-lg">
-                <ul>
-                    <li className="px-4 py-1 hover:bg-gray-200">Red</li>
-                    <li className="px-4 py-1 hover:bg-gray-200">Green </li>
-                    <li className="px-4 py-1 hover:bg-gray-200">Blue</li>
-                </ul>
-            </div>
+       
+            <Modal isVisible={isModalVisible} onClose={() => setIsModalVisible(false)}>
+                <form onSubmit={handleNewColorSubmit}>
+                    <label htmlFor="newColor">New Color:  </label>
+                    <input
+                        type="text"
+                        id="newColor"
+                        value={newColor}
+                        onChange={(e) => setNewColor(e.target.value)}
+                        className="form-input rounded-md px-4 py-1 shadow-md border border-gray-300"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        className="ml-2 border rounded-md px-4 py-1 mt-5 shadow-md hover:bg-gray-50 focus:outline-none"
+                    >
+                        Submit
+                    </button>
+                </form>
+            </Modal>
+
         </div>
     );
 };
