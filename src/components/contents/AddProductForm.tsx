@@ -2,9 +2,9 @@ import ColorDropdown from "./ColorDropdown";
 
 const AddProductForm = () => {
     return (
-        <div>
-            <div className="text-lg font-medium">Add a product</div>
-            <form action="" className="w-full">
+        <div className="border rounded-lg p-6 shadow-md w-3/5 border-gray-300">
+            <div className="text-lg font-medium mb-4">Add a new product</div>
+            <form action="" className="w-full"> 
                 <div>
                     <div className="mb-4">
                         <label htmlFor="model_name">Model Name</label>

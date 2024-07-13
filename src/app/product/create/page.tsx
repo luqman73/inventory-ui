@@ -1,9 +1,11 @@
+import AddColorForm from "src/components/contents/AddColorForm";
 import AddProductForm from "src/components/contents/AddProductForm";
 
 const AddProduct = () => {
     return (
-        <div>
+        <div className="flex space-x-8">
            <AddProductForm/>
+           <AddColorForm/>
         </div>
     );
 };
