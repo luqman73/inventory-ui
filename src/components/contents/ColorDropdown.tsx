@@ -10,6 +10,10 @@ const ColorDropdown = ({ color_id, onColorChange}) => {
             try {
                 const response = await api.get('/colors');
                 setColors(response.data);
+                
+                if (response.data.length > 0) {
+                    onColorChange(response.data[0].id);
+                }
             } catch (error) {
                 console.error('Failed to fetch colors', error);
             }
